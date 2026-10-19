@@ -1,0 +1,1437 @@
+/* ---------- 1. Переменные и сброс ---------- */
+
+:root {
+  --color-bg: #fbf8f6;
+  --color-surface: #ffffff;
+  --color-primary: #c78391;
+  --color-primary-dark: #a95f71;
+  --color-primary-light: #f5e5e8;
+  --color-secondary: #e8d4c3;
+  --color-secondary-light: #f7eee7;
+  --color-lavender: #eeebf8;
+  --color-text: #30292b;
+  --color-muted: #796f72;
+  --color-border: #eee3e2;
+
+  --shadow-sm: 0 4px 14px rgba(70, 40, 45, 0.06);
+  --shadow-md: 0 12px 30px rgba(70, 40, 45, 0.10);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+
+  --container: 1200px;
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  min-width: 320px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+::selection {
+  color: #fff;
+  background-color: var(--color-primary-dark);
+}
+
+/* ---------- 2. Шапка сайта ---------- */
+
+header {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(12px, 2vw, 30px);
+
+  min-height: 110px;
+  padding: 16px max(24px, calc((100% - var(--container)) / 2));
+
+  color: #fff;
+  background-color: #6c5054;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(48, 30, 35, 0.78),
+      rgba(48, 30, 35, 0.38)
+    ),
+    url("../media/nails.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+header img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+header span {
+  min-width: 0;
+}
+
+header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 10px 18px;
+
+  color: #49383a;
+  background-color: rgba(255, 248, 243, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+
+  text-decoration: none;
+  text-align: center;
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 600;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+header a:hover {
+  color: #fff;
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+header a:focus-visible,
+footer a:focus-visible,
+.carousel-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* ---------- 3. Общие секции ---------- */
+
+main {
+  width: 100%;
+  overflow: clip;
+}
+
+#info,
+#service,
+#map,
+.gallery-container {
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+}
+
+#info {
+  display: grid;
+  gap: 64px;
+  padding-block: 72px;
+}
+
+#content {
+  display: grid;
+  gap: 48px;
+}
+
+/* ---------- 4. Блок «О нас» ---------- */
+
+#text_block {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 36px;
+}
+
+#text_block h1 {
+  color: var(--color-primary-dark);
+}
+
+#text_block span {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+#about {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+#about > h2,
+#about > h4 {
+  grid-column: 1 / -1;
+}
+
+#about > h2 {
+  margin-bottom: 4px;
+}
+
+#about > h4 {
+  margin-top: 8px;
+  padding: 24px 28px;
+
+  color: var(--color-primary-dark);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+
+  text-align: center;
+  line-height: 1.7;
+}
+
+.content-box {
+  padding: clamp(22px, 3vw, 32px);
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.content-box h3 {
+  margin-bottom: 12px;
+  color: var(--color-primary-dark);
+}
+
+.content-box:hover {
+  transform: translateY(-4px);
+  border-color: #e6c5cb;
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- 5. Отзывы и карусель ---------- */
+
+#Reviews {
+  min-width: 0;
+  scroll-margin-top: 24px;
+}
+
+#Reviews > h2 {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.carousel-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.reviews-track {
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.4s ease-in-out;
+  will-change: transform;
+}
+
+.Reviews_box {
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  min-width: 0;
+  min-height: 250px;
+  padding: clamp(26px, 4vw, 44px);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf7,
+      var(--color-primary-light)
+    );
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.Reviews_box span {
+  color: var(--color-text);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.85;
+}
+
+.Reviews_box img {
+  display: block;
+  flex-shrink: 0;
+
+  width: 68px;
+  height: 68px;
+  margin-inline: auto;
+
+  object-fit: cover;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.carousel-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  color: var(--color-primary-dark);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+
+  font-size: 19px;
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.carousel-btn:hover {
+  color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.06);
+}
+
+.carousel-btn:active {
+  transform: scale(0.96);
+}
+
+/* ---------- 6. Раздел услуг ---------- */
+
+#service {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+
+  padding-block: 64px;
+  scroll-margin-top: 24px;
+}
+
+.service_box,
+.service_box2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+  min-width: 0;
+  min-height: 190px;
+  margin: 0;
+  padding: clamp(22px, 2.5vw, 30px);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.service_box {
+  background: var(--color-secondary-light);
+}
+
+.service_box2 {
+  background: var(--color-lavender);
+}
+
+.service_box:hover,
+.service_box2:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Название услуги */
+
+.service_box samp:first-child,
+.service_box2 samp:first-child {
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Цена */
+
+.service_box samp:nth-child(2),
+.service_box2 samp:nth-child(2) {
+  color: var(--color-primary-dark);
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* Описание */
+
+.service_box samp:nth-child(3),
+.service_box2 samp:nth-child(3) {
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ---------- 7. Карта ---------- */
+
+#map {
+  padding-bottom: 64px;
+  scroll-margin-top: 24px;
+}
+
+#map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 45vw, 430px);
+
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- 8. Фотогалерея ---------- */
+
+.gallery-container {
+  padding-block: 16px 80px;
+}
+
+.gallery-title {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(150px, 18vw, 230px);
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+  background: var(--color-secondary-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.45s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.07);
+}
+
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+/* ---------- 9. Подвал ---------- */
+
+footer {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1.1fr;
+  gap: 32px;
+
+  padding: 48px max(24px, calc((100% - var(--container)) / 2));
+
+  color: #f8eeec;
+  background-color: #453638;
+  background-image:
+    linear-gradient(
+      rgba(48, 35, 38, 0.94),
+      rgba(48, 35, 38, 0.96)
+    ),
+    url("../media/bacgrounf.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+footer span {
+  min-width: 0;
+  color: #e0d2d1;
+  overflow-wrap: anywhere;
+}
+
+footer a {
+  color: #f0c9d0;
+  text-decoration: none;
+
+  transition:
+    color var(--transition),
+    text-decoration-color var(--transition);
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Контейнер документов */
+
+footer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+footer > span:last-child {
+  grid-column: 1 / -1;
+
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  font-size: 0.8rem;
+  color: #d0bfc0;
+}
+
+
+/* ---------- 10. Адаптация для планшетов ---------- */
+
+@media (max-width: 900px) {
+  header {
+    gap: 12px;
+    padding-inline: 24px;
+  }
+
+  header img {
+    width: 64px;
+    height: 64px;
+  }
+
+  header a {
+    padding-inline: 10px;
+    font-size: 14px;
+  }
+
+  #info,
+  #service,
+  #map,
+  .gallery-container {
+    width: min(calc(100% - 36px), var(--container));
+  }
+
+  #info {
+    gap: 48px;
+    padding-block: 52px;
+  }
+
+  #text_block {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  #service {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-block: 44px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 190px;
+    gap: 12px;
+  }
+
+  footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+    padding-inline: 28px;
+  }
+
+  footer > span:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- 11. Адаптация для телефонов ---------- */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 14px;
+
+    padding: 22px 18px 26px;
+  }
+
+  header img {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 4px;
+  }
+
+  header span {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  header a {
+    width: 100%;
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  #info,
+  #service,
+  #map,
+  .gallery-container {
+    width: calc(100% - 32px);
+  }
+
+  #info {
+    gap: 38px;
+    padding-block: 40px;
+  }
+
+  #content {
+    gap: 36px;
+  }
+
+  #text_block {
+    gap: 14px;
+  }
+
+  #text_block span {
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+
+  #about {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #about > h2,
+  #about > h4 {
+    grid-column: auto;
+  }
+
+  .content-box {
+    padding: 22px;
+  }
+
+  #about > h4 {
+    padding: 20px;
+  }
+
+  #Reviews > h2 {
+    margin-bottom: 20px;
+  }
+
+  .carousel-container {
+    gap: 8px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .Reviews_box {
+    min-height: 250px;
+    padding: 24px 16px;
+    gap: 20px;
+  }
+
+  .Reviews_box span {
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .Reviews_box img {
+    width: 58px;
+    height: 58px;
+  }
+
+  #service {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-block: 36px;
+  }
+
+  .service_box,
+  .service_box2 {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  #map {
+    padding-bottom: 40px;
+  }
+
+  #map iframe {
+    height: 300px;
+    border-radius: var(--radius-md);
+  }
+
+  .gallery-container {
+    padding-block: 8px 48px;
+  }
+
+  .gallery-title {
+    margin-bottom: 20px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 155px;
+    gap: 10px;
+  }
+
+  .gallery-item {
+    border-radius: var(--radius-sm);
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 22px;
+    font-size: 0.82rem;
+  }
+
+  footer > span:last-child {
+    grid-column: auto;
+    padding-top: 18px;
+  }
+}
+
+/* ---------- 12. Маленькие экраны ---------- */
+
+@media (max-width: 360px) {
+  #info,
+  #service,
+  #map,
+  .gallery-container {
+    width: calc(100% - 24px);
+  }
+
+  .gallery-grid {
+    grid-auto-rows: 130px;
+    gap: 8px;
+  }
+
+  .carousel-container {
+    gap: 5px;
+  }
+
+  .carousel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .service_box,
+  .service_box2 {
+    padding: 18px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
+/* ========================================
+   MY STYLE | Стили новой HTML-структуры
+   Добавить в конец index.css
+   ======================================== */
+
+/* Общие секции */
+
+.section {
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+  padding-block: 72px;
+  scroll-margin-top: 24px;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin-bottom: 14px;
+}
+
+.section-heading > p:last-child {
+  color: var(--color-muted);
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--color-primary-dark);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+/* Шапка и навигация */
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 94px;
+}
+
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.site-header .brand:hover {
+  background: transparent;
+  transform: none;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.site-header .main-nav a {
+  min-height: 42px;
+  margin: 0;
+}
+
+/* Первый экран */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 510px;
+  padding: clamp(40px, 8vw, 100px)
+           max(24px, calc((100% - var(--container)) / 2));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(49, 33, 37, 0.86),
+      rgba(49, 33, 37, 0.42)
+    ),
+    url("../media/nails.jpg") center 45% / cover no-repeat;
+  color: #fff;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 650px);
+}
+
+.hero .eyebrow {
+  color: #f5d7de;
+}
+
+.hero h1 {
+  margin-bottom: 22px;
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  line-height: 1.05;
+}
+
+.hero-description {
+  max-width: 510px;
+  color: #f5e9e8;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.85;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.button-primary {
+  color: #fff;
+  background: var(--color-primary-dark);
+}
+
+.button-primary:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.button-secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.button-secondary:hover {
+  color: var(--color-text);
+  background: #fff;
+}
+
+.hero-decoration {
+  position: absolute;
+  z-index: 0;
+  right: 5%;
+  bottom: 10%;
+  color: rgba(255, 255, 255, 0.12);
+  font-size: clamp(3rem, 10vw, 9rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+/* О студии */
+
+#info {
+  display: block;
+}
+
+#content {
+  margin-bottom: 48px;
+}
+
+#text_block {
+  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 2fr);
+}
+
+#text_block h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.text-content {
+  color: var(--color-muted);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+.text-content p + p {
+  margin-top: 14px;
+}
+
+#about > h2 {
+  margin-bottom: 8px;
+}
+
+.feature-number {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* Услуги */
+
+#service-section {
+  width: 100%;
+  max-width: none;
+  padding: 72px max(24px, calc((100% - var(--container)) / 2));
+  background: #f4eeeb;
+}
+
+#service-section .section-heading {
+  max-width: 1200px;
+}
+
+#service {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+.service_box,
+.service_box2 {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.service-category {
+  color: var(--color-primary-dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.service_box h3,
+.service_box2 h3 {
+  font-size: 1.15rem;
+}
+
+.service-price {
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.service-description {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.service-note {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+/* Отзывы */
+
+#Reviews {
+  padding-block: 72px;
+}
+
+#Reviews .section-heading {
+  margin-bottom: 36px;
+}
+
+/* Галерея */
+
+#gallery {
+  width: 100%;
+  max-width: none;
+  padding: 72px max(24px, calc((100% - var(--container)) / 2));
+  background: #fff;
+}
+
+#gallery .section-heading {
+  max-width: 1200px;
+}
+
+#gallery .gallery-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0;
+}
+
+.gallery-item img {
+  height: 100%;
+}
+
+/* Контакты */
+
+#map {
+  width: min(calc(100% - 48px), var(--container));
+  padding-block: 72px;
+}
+
+#map .section-heading {
+  margin-bottom: 36px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
+  align-items: stretch;
+  gap: 24px;
+}
+
+.contact-card {
+  padding: clamp(24px, 3vw, 36px);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card h3 {
+  margin-bottom: 26px;
+}
+
+.contact-item + .contact-item {
+  margin-top: 20px;
+}
+
+.contact-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.contact-item p {
+  overflow-wrap: anywhere;
+}
+
+.contact-button {
+  margin-top: 28px;
+}
+
+.map-frame {
+  min-height: 350px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: 0;
+}
+
+/* Подвал */
+
+.site-footer {
+  display: block;
+  padding: 0 max(24px, calc((100% - var(--container)) / 2));
+  background: #453638;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1fr 1.3fr;
+  gap: 32px;
+  padding-block: 48px;
+}
+
+.footer-brand,
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.footer-logo {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-brand p {
+  color: #d0bfc0;
+}
+
+.footer-column h2 {
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.footer-column a,
+.footer-column span {
+  color: #e0d2d1;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.footer-column a {
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-block: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbbabb;
+  font-size: 0.78rem;
+}
+
+/* Адаптация */
+
+@media (max-width: 900px) {
+  .site-header {
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 24px;
+  }
+
+  .main-nav {
+    justify-content: center;
+  }
+
+  .hero {
+    min-height: 450px;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    width: calc(100% - 32px);
+    padding-block: 44px;
+  }
+
+  .section-heading {
+    margin-bottom: 26px;
+  }
+
+  .site-header {
+    padding: 20px 16px;
+  }
+
+  .main-nav {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .site-header .main-nav a {
+    flex: 1 1 calc(50% - 8px);
+    padding-inline: 8px;
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 470px;
+    padding: 48px 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 12vw, 4rem);
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 300px;
+  }
+
+  .hero-decoration {
+    right: 2%;
+    bottom: 4%;
+    font-size: 3rem;
+  }
+
+  #info {
+    width: calc(100% - 32px);
+    padding-block: 44px;
+  }
+
+  #text_block {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #about {
+    grid-template-columns: 1fr;
+  }
+
+  #about > h2,
+  #about > h4 {
+    grid-column: auto;
+  }
+
+  #service-section,
+  #gallery {
+    padding: 44px 16px;
+  }
+
+  #service {
+    grid-template-columns: 1fr;
+  }
+
+  #Reviews {
+    padding-block: 44px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-frame,
+  .map-frame iframe {
+    min-height: 300px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-block: 36px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .button,
+  .content-box,
+  .service_box,
+  .service_box2,
+  .gallery-item img {
+    transition: none !important;
+  }
+}
